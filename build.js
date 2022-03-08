@@ -9,7 +9,7 @@ if (fse.existsSync(path.join(__dirname, 'build'))) {
   fse.rmdirSync(path.join(__dirname, 'build'), {recursive: true});
 }
 
-fse.mkdirp('build');
+fse.mkdirpSync('build');
 
 fse.copy(path.join(__dirname, 'static'), path.join(__dirname, 'build'), err => {
   if (err) return console.error(err);
@@ -35,8 +35,10 @@ walk(path.join(__dirname, 'pages')).then((allFiles) => {
       pages: path.join(__dirname, 'pages/'),
       partials: path.join(__dirname, 'partials/'),
     });
-    console.log(f, f.replace('/pages/', '/build/').replace('.ejs', '.html'));
-    console.log(html);
+    
+    const fileName = f.replace('/pages/', '/build/').replace('.ejs', '.html');
+    fse.mkdirpSync(path.dirname(fileName));
+    console.log(fileName);
     fs.writeFile(f.replace('/pages/', '/build/').replace('.ejs', '.html'), html, (err) => {
       if (err) {
         console.log('error writing', err);
