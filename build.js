@@ -4,14 +4,13 @@ const path = require('path');
 const ejs = require('ejs');
 const config = require('./config');
 
-
-if (fse.existsSync(path.join(__dirname, 'build'))) {
-  fse.rmdirSync(path.join(__dirname, 'build'), {recursive: true});
+if (fse.existsSync(path.join(__dirname, 'dist'))) {
+  fse.rmdirSync(path.join(__dirname, 'dist'), {recursive: true});
 }
 
-fse.mkdirpSync('build');
+fse.mkdirpSync('dist');
 
-fse.copy(path.join(__dirname, 'static'), path.join(__dirname, 'build'), err => {
+fse.copy(path.join(__dirname, 'static'), path.join(__dirname, 'dist'), err => {
   if (err) return console.error(err);
   console.log('success!');
 });
@@ -36,10 +35,10 @@ walk(path.join(__dirname, 'pages')).then((allFiles) => {
       partials: path.join(__dirname, 'partials/'),
     });
     
-    const fileName = f.replace('/pages/', '/build/').replace('.ejs', '.html');
+    const fileName = f.replace('/pages/', '/dist/').replace('.ejs', '.html');
     fse.mkdirpSync(path.dirname(fileName));
     console.log(fileName);
-    fs.writeFile(f.replace('/pages/', '/build/').replace('.ejs', '.html'), html, (err) => {
+    fs.writeFile(f.replace('/pages/', '/dist/').replace('.ejs', '.html'), html, (err) => {
       if (err) {
         console.log('error writing', err);
       }
