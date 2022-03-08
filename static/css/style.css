@@ -1552,3 +1552,14 @@ body :not(pre) > code[class*="language-"], body pre[class*="language-"] {
     padding-top: 0px;
   }
 }
+
+.social-links {
+  display: flex;
+  margin: 10px;
+}
+
+.brand-link {
+  height: 50px;
+  width: 50px;
+  margin: 10px;
+}

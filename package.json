@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node build.js",
-    "start": "npm run build; serve dist"
+    "start": "npm run build; serve dist",
+    "dev": "nodemon -e '*' --watch pages --watch partials --watch static --exec \"npm run build\""
   },
   "keywords": [],
   "author": "",
@@ -15,5 +16,8 @@
     "ejs": "^3.1.6",
     "fs-extra": "^10.0.1",
     "serve": "^13.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
