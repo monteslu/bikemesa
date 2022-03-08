@@ -1563,3 +1563,7 @@ body :not(pre) > code[class*="language-"], body pre[class*="language-"] {
   width: 50px;
   margin: 10px;
 }
+
+.ride-banner {
+  width: 100%;
+}
