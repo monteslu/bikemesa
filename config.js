@@ -1,5 +1,5 @@
 const config = {
-  tile: 'Bike Mesa',
+  title: 'Bike Mesa',
 };
 
 module.exports = config;

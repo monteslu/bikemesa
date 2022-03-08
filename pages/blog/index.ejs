@@ -1,7 +1,28 @@
 <%- include(partials + 'header.ejs', {config}) -%>
+<style>
+  .description {
+    margin: 10px;
+  }
+  .title {
+    color: blue;
+    font-size: 1.5rem;
+  }
+</style>
 <div class="container mx-auto lg:h-screen flex flex-col justify-center items-center">
   <h1>blog</h1>
-
+  <ul>
+    <% config.blogs.forEach(function(blog){ %>
+      <li>
+        <header>
+          <h2 class="title"><a href="<%= blog.config.link %>"><%= blog.config.title%></a></h2>
+          <span><%= blog.config.date %></span>
+        </header>
+        <section>
+          <p class="description"><%= blog.config.description || `${blog.config.title}...` %></p>
+        </section>
+      </li>
+    <% }); %>
+  </ul>
 
 <%- include(partials + 'social.ejs', {config}) -%>
 <%- include(partials + 'footer.ejs', {config}) -%>
