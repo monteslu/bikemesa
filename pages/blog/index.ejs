@@ -11,7 +11,7 @@
 <div class="container mx-auto lg:h-screen flex flex-col justify-center items-center">
   <h1>blog</h1>
   <ul>
-    <% config.blogs.forEach(function(blog){ %>
+    <% blogs.forEach(function(blog){ %>
       <li>
         <header>
           <h2 class="title"><a href="<%= blog.config.link %>"><%= blog.config.title%></a></h2>

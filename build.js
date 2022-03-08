@@ -36,7 +36,7 @@ const fileMap = {};
 const pages = path.join(__dirname, 'pages/');
 const partials = path.join(__dirname, 'partials/');
 
-config.blogs = [];
+let blogs = [];
 
 walk(path.join(__dirname, 'pages')).then(async (allFiles) => {
   console.log(allFiles);
@@ -55,7 +55,7 @@ walk(path.join(__dirname, 'pages')).then(async (allFiles) => {
         try {
           fObj.config = { ...fObj.config, ...JSON.parse(toParse) };
           if (fObj.config.type === 'blog') {
-            config.blogs.push(fObj);
+            blogs.push(fObj);
           }
         } catch (e) {
           console.log('error parsing page config', e);
@@ -67,7 +67,7 @@ walk(path.join(__dirname, 'pages')).then(async (allFiles) => {
     console.log(fObj.config);
   }
   
-  config.blogs = config.blogs.sort((a, b) => {
+  blogs = blogs.sort((a, b) => {
     if (a.config.date > b.config.date) {
       return -1;
     }
@@ -79,7 +79,7 @@ walk(path.join(__dirname, 'pages')).then(async (allFiles) => {
 
   allFiles.forEach(async (f) => {
     const fObj = fileMap[f];
-    const html = ejs.render(fObj.text, { config, pages, partials, pageConfig: fObj.config });
+    const html = ejs.render(fObj.text, { config, pages, partials, pageConfig: fObj.config, blogs });
     
     fse.mkdirpSync(path.dirname(fObj.outputFilename));
     console.log(fObj.outputFilename);

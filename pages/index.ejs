@@ -12,6 +12,16 @@
   <div style="margin: 15px;">
     We're working to make bicycling a prominent, safe, and convenient form of transportation and recreation in Mesa, Arizona and surrounding areas through education, grassroots events, and civic participation.
   </div>
+  <div>
+    <h2>latest blog:</h2>
+    <header>
+      <h3 class="title"><a href="<%= blogs[0].config.link %>"><%= blogs[0].config.title%></a></h3>
+      <span><%= blogs[0].config.date %></span>
+    </header>
+    <section>
+      <p class="description"><%= blogs[0].config.description || `${blogs[0].config.title}...` %></p>
+    </section>
+  </div>
 </div>
 
 <%- include(partials + 'footer.ejs', {config}) -%>
