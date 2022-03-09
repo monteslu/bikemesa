@@ -8,16 +8,14 @@ const config = require('./config');
 const { parse } = nhp;
 const fsp = fse.promises;
 
+const startTime = Date.now();
+
 if (fse.existsSync(path.join(__dirname, 'dist'))) {
   fse.rmdirSync(path.join(__dirname, 'dist'), {recursive: true});
 }
 
 fse.mkdirpSync('dist');
-
-fse.copy(path.join(__dirname, 'static'), path.join(__dirname, 'dist'), err => {
-  if (err) return console.error(err);
-  console.log('success!');
-});
+const copyP = fse.copy(path.join(__dirname, 'static'), path.join(__dirname, 'dist'));
 
 async function walk(dir, fileList = []) {
   const files = await fsp.readdir(dir);
@@ -64,7 +62,7 @@ walk(path.join(__dirname, 'pages')).then(async (allFiles) => {
     }
     fObj.config.type = fObj.config.type || 'page';
     fObj.config.title = fObj.config.title || config.title;
-    console.log(fObj.config);
+    // console.log(fObj.config);
   }
   
   blogs = blogs.sort((a, b) => {
@@ -77,17 +75,18 @@ walk(path.join(__dirname, 'pages')).then(async (allFiles) => {
     return 0;
   });
 
-  allFiles.forEach(async (f) => {
-    const fObj = fileMap[f];
+  function render(fObj) {
+    // const fObj = fileMap[f];
     const html = ejs.render(fObj.text, { config, pages, partials, pageConfig: fObj.config, blogs });
-    
     fse.mkdirpSync(path.dirname(fObj.outputFilename));
-    console.log(fObj.outputFilename);
-    fse.writeFile(f.replace('/pages/', '/dist/').replace('.ejs', '.html'), html, (err) => {
-      if (err) {
-        console.log('error writing', err);
-      }
-    });
-  });
-});
+    return fse.promises.writeFile(fObj.outputFilename, html);
+  }
 
+  const promises = Object.values(fileMap).map(render);
+  promises.push(copyP);
+
+  Promise.all(promises)
+    .then((vals) => {
+      console.log('pages', promises.length -1, 'compile millis', Date.now() - startTime);
+    });
+});
