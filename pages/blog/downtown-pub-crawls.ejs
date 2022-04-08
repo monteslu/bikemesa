@@ -6,13 +6,20 @@
   }
 %>
 <%- include(partials + 'header.ejs', {config}) -%>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v13.0&appId=522001311816765&autoLogAppEvents=1" nonce="UouFbW6c"></script>
 <div class="container mx-auto lg:h-screen flex flex-col justify-center items-center">
   <h1>Downtown Mesa bike pub crawls</h1>
 
   
   <div style="margin: 15px;">
-    stuff.  things
+    Every third friday of the month we meet up at the excellent <a style="color: blue;" href="https://www.orobrewing.com/" target="_blank">Oro Brewing Company</a>,
+    take a 4 or 5 mile ride with a stop or two, and finish up at the also excellent <a style="color: blue;" href="http://chupacabrataproom.com/" target="_blank">Chupacabra Taproom</a>.
   </div>
+  <div style="margin: 15px;">
+    <img class="ride-banner" src="/img/group_ride.jpg" alt="bike mesa ride">
+  </div>
+  Join the FB group for event reminders:
+  <div class="fb-group" data-href="https://www.facebook.com/groups/bikemesa/" data-width="300" data-show-metadata="false"><blockquote cite="https://www.facebook.com/groups/bikemesa/" class="fb-xfbml-parse-ignore">BikeMesa</blockquote></div>
 </div>
 <%- include(partials + 'social.ejs', {config}) -%>
 <%- include(partials + 'footer.ejs', {config}) -%>

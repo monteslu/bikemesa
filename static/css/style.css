@@ -1576,5 +1576,5 @@ body :not(pre) > code[class*="language-"], body pre[class*="language-"] {
 }
 
 .ride-banner {
-  width: 100%;
+  height: 18em;
 }
