@@ -9,7 +9,7 @@
   <%- include(partials + 'social.ejs', {config}) -%>
   <img class="ride-banner" src="/img/bikemesaride.webp" alt="bike mesa ride">
 
-  <div style="margin: 15px;">
+  <div style="margin: 15px; max-width: 800px;">
     We're working to make bicycling a prominent, safe, and convenient form of transportation and recreation in Mesa, Arizona and surrounding areas through education, grassroots events, and civic participation.
   </div>
   <div>
@@ -22,6 +22,7 @@
       <p class="description"><%= blogs[0].config.description || `${blogs[0].config.title}...` %></p>
     </section>
   </div>
+  <a rel="me" href="https://fosstodon.org/@monteslu" style="display: none;">Mastodon</a>
 </div>
 
 <%- include(partials + 'footer.ejs', {config}) -%>
