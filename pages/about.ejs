@@ -1,7 +1,12 @@
 <%- include(partials + 'header.ejs', {config}) -%>
 <div class="container mx-auto lg:h-screen flex flex-col justify-center items-center">
   <h1>about us</h1>
+  <%- include(partials + 'social.ejs', {config}) -%>
+  <p class="text-center">Bike Mesa is a community of people who love to ride bikes in Mesa, Arizona. </p>
+
+  <img class="ride-banner" src="/img/speck.jpg" alt="bike mesa ride">
+  <p class="text-center">We are unaffiliated with the City of Mesa government. </p>
+  <a rel="me" href="https://fosstodon.org/@monteslu" style="display: none;">Mastodon</a>
 
 
-<%- include(partials + 'social.ejs', {config}) -%>
 <%- include(partials + 'footer.ejs', {config}) -%>
