@@ -10,12 +10,17 @@ const fsp = fse.promises;
 
 const startTime = Date.now();
 
-if (fse.existsSync(path.join(__dirname, 'dist'))) {
-  fse.rmdirSync(path.join(__dirname, 'dist'), {recursive: true});
+async function cleanAndSetup() {
+  try {
+    await fse.remove(path.join(__dirname, 'dist'));
+    await fse.ensureDir('dist');
+    return fse.copy(path.join(__dirname, 'static'), path.join(__dirname, 'dist'));
+  } catch (error) {
+    console.error('Setup error:', error);
+  }
 }
 
-fse.mkdirpSync('dist');
-const copyP = fse.copy(path.join(__dirname, 'static'), path.join(__dirname, 'dist'));
+const copyP = cleanAndSetup();
 
 async function walk(dir, fileList = []) {
   const files = await fsp.readdir(dir);

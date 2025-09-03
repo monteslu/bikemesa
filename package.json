@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "node build.js",
-    "start": "npm run build; serve dist",
-    "dev": "nodemon -e '*' --watch pages --watch partials --watch static --exec \"npm run build\""
+    "start": "npm run build && http-server dist",
+    "dev": "npm run build && http-server dist & node --watch-path=pages --watch-path=partials --watch-path=static --watch-path=config.js build.js"
   },
   "keywords": [],
   "author": "",
@@ -15,10 +15,7 @@
   "dependencies": {
     "ejs": "^3.1.6",
     "fs-extra": "^10.0.1",
-    "node-html-parser": "^5.2.0",
-    "serve": "^14.2.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.15"
+    "http-server": "^14.1.1",
+    "node-html-parser": "^5.2.0"
   }
 }
