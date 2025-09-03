@@ -1266,7 +1266,7 @@ h2 {
   letter-spacing: -0.05em;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 960px) {
   h1 {
     font-size: 4.5rem;
     line-height: 1;
@@ -1306,7 +1306,7 @@ body :not(pre) > code[class*="language-"], body pre[class*="language-"] {
   outline-offset: 2px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 960px) {
   .lg\:prose-xl {
     font-size: 1.25rem;
     line-height: 1.8;
@@ -1586,6 +1586,16 @@ body :not(pre) > code[class*="language-"], body pre[class*="language-"] {
 img {
   max-width: 100%;
   height: auto;
+}
+
+/* Override for blog thumbnails - force small size */
+article img.blog-thumbnail {
+  width: 120px !important;
+  height: 80px !important;
+  max-width: 120px !important;
+  min-width: 120px !important;
+  flex-shrink: 0 !important;
+  object-fit: cover !important;
 }
 
 /* Modern layout fixes */

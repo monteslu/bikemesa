@@ -1,28 +1,24 @@
 <%- include(partials + 'header.ejs', {config}) -%>
-<style>
-  .description {
-    margin: 10px;
-  }
-  .title {
-    color: blue;
-    font-size: 1.5rem;
-  }
-</style>
-<div class="container mx-auto lg:h-screen flex flex-col justify-center items-center">
-  <h1>blog</h1>
-  <ul>
+<div class="blog-content">
+  <h1>Blog</h1>
+  <div class="space-y-8">
     <% blogs.forEach(function(blog){ %>
-      <li>
-        <header>
-          <h2 class="title"><a href="<%= blog.config.link %>"><%= blog.config.title%></a></h2>
-          <span><%= blog.config.date %></span>
+      <article class="border-b border-gray-200 pb-8 last:border-b-0">
+        <% if (blog.config.ogImage) { %>
+        <div class="mb-4">
+          <img src="<%= blog.config.ogImage %>" alt="<%= blog.config.title %>" style="width: 120px; height: 80px; object-fit: cover; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+        </div>
+        <% } %>
+        <header class="mb-4">
+          <h2 class="text-2xl font-bold mb-2">
+            <a href="<%= blog.config.link %>" class="text-blue-600 hover:text-blue-800 transition-colors no-underline"><%= blog.config.title%></a>
+          </h2>
+          <time class="text-sm text-gray-500"><%= blog.config.date %></time>
         </header>
-        <section>
-          <p class="description"><%= blog.config.description || `${blog.config.title}...` %></p>
-        </section>
-      </li>
+        <p class="text-gray-700 text-lg leading-relaxed"><%= blog.config.description || `${blog.config.title}...` %></p>
+      </article>
     <% }); %>
-  </ul>
+  </div>
 
 <%- include(partials + 'social.ejs', {config}) -%>
 <%- include(partials + 'footer.ejs', {config}) -%>
