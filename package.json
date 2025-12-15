@@ -13,6 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "sitemill": "^0.1.0"
+    "sitemill": "^0.4.0"
   }
 }
