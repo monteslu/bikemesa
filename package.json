@@ -5,17 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node build.js",
-    "start": "npm run build && http-server dist",
-    "dev": "npm run build && http-server dist & node --watch-path=pages --watch-path=partials --watch-path=static --watch-path=config.js build.js"
+    "build": "sitemill build",
+    "start": "sitemill serve",
+    "dev": "sitemill serve & node --watch-path=pages --watch-path=partials --watch-path=static --watch-path=config.js -e 'require(\"sitemill\").build(require(\"./config\"))'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ejs": "^3.1.6",
-    "fs-extra": "^10.0.1",
-    "http-server": "^14.1.1",
-    "node-html-parser": "^5.2.0"
+    "sitemill": "^0.1.0"
   }
 }
